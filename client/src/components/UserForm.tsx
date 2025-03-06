@@ -1,7 +1,7 @@
 import React from "react";
 
-// import type { UserData } from "../interfaces/UserData";
-// import Auth from '../utils/auth';
+import type { UserData } from "../interfaces/UserData";
+import auth from "../utils/auth";
 
 interface UserListProps {
     users: UserData[] | null; // users can be an array of UserData objects or null

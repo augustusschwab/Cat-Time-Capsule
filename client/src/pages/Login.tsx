@@ -1,8 +1,8 @@
 import { useState, FormEvent, ChangeEvent } from "react";
 
 import Auth from "../utils/auth";
-// import { login } from "../api/authAPI";  // Import the login function from the API
-// import { UserLogin } from "../interfaces/UserLogin";  // Import the interface for UserLogin
+import { login } from "../api/auth";  
+import { UserLogin } from "../interfaces/UserLogin";
 
 const Login = () => {
   const [loginData, setLoginData] = useState<UserLogin>({
