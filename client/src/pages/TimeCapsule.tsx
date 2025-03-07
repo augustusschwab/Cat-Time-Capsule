@@ -1,6 +1,6 @@
 import TimeCapsuleForm from '../components/TimeCapsuleForm.jsx';
 
-function timeCapsule(){
+function TimeCapsule(){
     return(
         <>
             <TimeCapsuleForm />
@@ -8,4 +8,4 @@ function timeCapsule(){
     )
 }
 
-export default timeCapsule;
+export default TimeCapsule;
