@@ -23,10 +23,6 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
     const saltRounds = 10;
     this.password = await bcrypt.hash(password, saltRounds);
   }
-
-  public changed(key: keyof UserAttributes): boolean {
-    return this.previous(key) !== this.get(key);
-  }
 }
 
 export function UserFactory(sequelize: Sequelize): typeof User {
@@ -67,3 +63,6 @@ export function UserFactory(sequelize: Sequelize): typeof User {
   );
 
   return User;
+}
+
+

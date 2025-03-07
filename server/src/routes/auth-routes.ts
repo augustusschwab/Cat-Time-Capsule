@@ -21,7 +21,7 @@ export const login = async (req: Request, res: Response) => {
 
   const token = jwt.sign({ username }, secretKey, { expiresIn: '1h' });
   return res.json({ token });  
-
+}
 const router = Router();
 
 router.post('/login', login);  
