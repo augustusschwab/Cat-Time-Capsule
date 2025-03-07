@@ -1,14 +1,14 @@
 import React from "react";
 
 
-interface UserData {
-    id: number;
-    username: string;
-    email: string;
-}
+// interface UserData {
+//     id: number;
+//     username: string;
+//     email: string;
+// }
 
 import type { UserData } from "../interfaces/UserData";
-import auth from "../utils/auth";
+// import auth from "../utils/auth";
 
 
 interface UserListProps {
