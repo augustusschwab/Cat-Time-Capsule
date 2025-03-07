@@ -13,14 +13,16 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
 
     const secretKey = process.env.JWT_SECRET_KEY || '';
 
-        jwt.verify(token, secretKey, (err: Error | null, user: JwtPayload | undefined) => {
-      if (err) {
-        return res.sendStatus(403); 
-      }
-
-            req.user = user as JwtPayload;
+    try {
+        const decoded=jwt.verify(token, secretKey) as JwtPayload;
+      
+            req.user = decoded;
       return next(); 
-    });
+    } catch(err) {
+      return res.sendStatus(403); 
+
+    }
+
   } else {
     res.sendStatus(401);
   }
