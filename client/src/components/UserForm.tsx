@@ -1,10 +1,13 @@
 import React from "react";
 
-// import type { UserData } from "../interfaces/UserData";
-// import Auth from '../utils/auth';
+interface UserData {
+    id: number;
+    username: string;
+    email: string;
+}
 
 interface UserListProps {
-    users: UserData[] | null; // users can be an array of UserData objects or null
+    users: UserData[] | null; 
 }
 
 const UserList: React.FC<UserListProps> = ({ users }) => {
