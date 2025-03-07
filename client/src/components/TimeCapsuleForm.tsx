@@ -1,15 +1,24 @@
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { TimeCapsule } from '../interfaces/TimeCapsule.jsx';
+
 
 function TimeCapsuleForm() {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [openDate, setOpenDate] = useState('');
-    const [message, setMessage] = useState('');
+    const [timeCapsule, setTimeCapsule] = useState<TimeCapsule | undefined>({
+        name: '',
+        email: '',
+        openDate: '',
+        message: '',
+    });
+
+    const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value } = event.target;
+        setTimeCapsule((prev)=>prev ? {...prev, [name]: value} : undefined);
+    }
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
-        console.log('Form submitted:', {name, email})
-
+        console.log('Form submitted:', {timeCapsule})
+        //navigate('/')
         //Send data to API
     };
 
@@ -17,22 +26,22 @@ function TimeCapsuleForm() {
         <form onSubmit={handleSubmit}>
             <label>
                 Name:
-                <input type='text' value={name} onChange={(e)=>setName(e.target.value)}></input>
+                <input type='text' value={timeCapsule?.name} onChange={handleChange}></input>
             </label>
             <br/>
             <label>
                 Email:
-                <input type='text' value={email} onChange={(e)=>setEmail(e.target.value)}></input>
+                <input type='text' value={timeCapsule?.email} onChange={handleChange}></input>
             </label>
             <br/>
             <label>
                 Open Date:
-                <input type='text' value={openDate} onChange={(e)=>setOpenDate(e.target.value)}></input>
+                <input type='text' value={timeCapsule?.openDate} onChange={handleChange}></input>
             </label>
             <br />
             <label>
                 Message:
-                <input type='text' value={message} onChange={(e)=>setMessage(e.target.value)}></input>
+                <input type='text' value={timeCapsule?.message} onChange={handleChange}></input>
             </label>
             <br />
             <button type="submit">Submit</button>
