@@ -1,7 +1,7 @@
 import { useState, FormEvent, ChangeEvent } from "react";
 
 import Auth from "../utils/auth";
-import { UserLogin, login } from "../interfaces/UserLogin";
+import { UserLogin } from "../interfaces/UserLogin";
 
 const Login = () => {
   const [loginData, setLoginData] = useState<UserLogin>({
