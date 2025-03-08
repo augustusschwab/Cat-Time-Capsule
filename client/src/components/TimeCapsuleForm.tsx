@@ -5,20 +5,18 @@ import { fetchCat, createTimeCapsule } from '../api/time-capsule.js'
 
 
 function TimeCapsuleForm() {
-    const [newTimeCapsule, setTimeCapsule] = useState<TimeCapsule | undefined>({
+    const [newTimeCapsule, setTimeCapsule] = useState<TimeCapsule>({
         name: '',
         email: '',
         openDate: '',
         message: '',
-        catUrl:'',
+        catUrl: '',
     });
 
     const navigate = useNavigate();
 
     const createNewTimeCapsule = async (body: TimeCapsule) => {
         try {
-            const catUrl = await fetchCat();
-            setTimeCapsule((prev)=> prev ? { ...prev, catUrl: catUrl } : undefined);
             console.log(body);
             const data = await createTimeCapsule(body);
             return data;
@@ -29,17 +27,22 @@ function TimeCapsuleForm() {
 
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = event.target;
-        setTimeCapsule((prev)=> prev ? { ...prev, [name]: value } : undefined);
+        setTimeCapsule((prev)=> ({ ...prev, [name]: value }));
     }
 
-    const handleSubmit = (event: FormEvent) => {
+    const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
-        console.log('Form submitted:', {newTimeCapsule})
-        if(newTimeCapsule){
-            const data = createNewTimeCapsule(newTimeCapsule);
-            console.log(data)
-            navigate('/home');
-        }
+        //Fetch cat url
+        const catUrl = await fetchCat();
+        console.log('This is the catURL:', catUrl);
+        
+        //Update the Time Capsule object with the image of a random cat.
+        const updatedTimeCapsule = {...newTimeCapsule, catUrl};
+        console.log('Form submitted:', updatedTimeCapsule)
+
+        //Create a new time capsule object with the information provided by the user and the random cat image url.
+        await createNewTimeCapsule(updatedTimeCapsule);
+        navigate('/home'); //navigate to the user home page
     };
 
     return(
@@ -64,7 +67,7 @@ function TimeCapsuleForm() {
                 <input type='text' name='message' value={newTimeCapsule?.message || ''} onChange={handleChange}></input>
             </label>
             <br />
-            <button type="submit" onSubmit={handleSubmit}>Submit</button>
+            <button type="submit">Submit</button>
         </form>
     );
 }

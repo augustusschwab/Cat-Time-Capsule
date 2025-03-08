@@ -1,10 +1,10 @@
 import { TimeCapsule } from "../interfaces/TimeCapsule.jsx";
 
 const fetchCat = async() => {
-    const response = await fetch('api/cat/randomcat', {
+    const response = await fetch('/api/cat/random-cat-image', {
         method: 'GET',
         headers:{
-            'Content-Type': 'text/plain',
+            'Accept': 'text/plain',
         },
     });
     const imageUrl = await response.text();
@@ -14,7 +14,7 @@ const fetchCat = async() => {
 const createTimeCapsule = async(body: TimeCapsule) => {
     try {
         const response = await fetch(
-            'api/timecapsule/', {
+            '/api/time-capsule/', {
                 method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
