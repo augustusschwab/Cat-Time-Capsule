@@ -3,4 +3,5 @@ export interface TimeCapsule {
     email: string,
     openDate: string,
     message: string,
+    catUrl: string,
 }
