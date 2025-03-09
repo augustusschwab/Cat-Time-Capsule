@@ -1,6 +1,6 @@
 import express from 'express';
 import type { Request, Response } from 'express';
-import { TimeCapsule, User } from '../../models';
+import { TimeCapsule, User } from '../../models/index.js';
 
 const router = express.Router();
 
@@ -51,10 +51,11 @@ router.get('/:id', async(req: Request, res: Response) => {
 
 //POST /api/time-capsule/ - Create new Time Capsule
 router.post('/', async (req: Request, res: Response) => {
-    const { name, email, openDate, message, catUrl } = req.body;
+    const { name, email, openDate, message, catUrl, assignedUserId } = req.body;
+    console.log(req.user);
     try{
         const newTimeCapsule = await TimeCapsule.create({
-            name, email, openDate, message, catUrl
+            name, email, openDate, message, catUrl, assignedUserId
         });
         res.status(201).json(newTimeCapsule);
     } catch(err: any) {

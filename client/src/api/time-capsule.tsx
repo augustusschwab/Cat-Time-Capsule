@@ -1,4 +1,4 @@
-import { TimeCapsule } from "../interfaces/TimeCapsule.jsx";
+import { TimeCapsuleData } from "../interfaces/TimeCapsuleData.js";
 
 const fetchCat = async() => {
     const response = await fetch('/api/cat/random-cat-image', {
@@ -11,7 +11,8 @@ const fetchCat = async() => {
     return imageUrl;
 }
 
-const createTimeCapsule = async(body: TimeCapsule) => {
+//Post call to the server to create a new Time Capsule object in the database.
+const createTimeCapsule = async(body: TimeCapsuleData ):Promise<TimeCapsuleData> => {
     try {
         const response = await fetch(
             '/api/time-capsule/', {

@@ -1,21 +1,23 @@
 import { ChangeEvent, useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { TimeCapsule } from '../interfaces/TimeCapsule.jsx';
+import { TimeCapsuleData } from '../interfaces/TimeCapsuleData.js';
 import { fetchCat, createTimeCapsule } from '../api/time-capsule.js'
 
 
 function TimeCapsuleForm() {
-    const [newTimeCapsule, setTimeCapsule] = useState<TimeCapsule>({
+    const [newTimeCapsule, setTimeCapsule] = useState<TimeCapsuleData>({
         name: '',
         email: '',
         openDate: '',
         message: '',
         catUrl: '',
+        assignedUserId: null,
+        assignedUser: null,
     });
 
     const navigate = useNavigate();
 
-    const createNewTimeCapsule = async (body: TimeCapsule) => {
+    const createNewTimeCapsule = async (body: TimeCapsuleData) => {
         try {
             console.log(body);
             const data = await createTimeCapsule(body);
@@ -46,7 +48,7 @@ function TimeCapsuleForm() {
     };
 
     return(
-        <form onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit}>
             <label>
                 Name:
                 <input type='text' name='name' value={newTimeCapsule?.name || ''} onChange={handleChange}></input>
@@ -67,7 +69,7 @@ function TimeCapsuleForm() {
                 <input type='text' name='message' value={newTimeCapsule?.message || ''} onChange={handleChange}></input>
             </label>
             <br />
-            <button type="submit">Submit</button>
+            <button className="btn" type="submit">Submit</button>
         </form>
     );
 }

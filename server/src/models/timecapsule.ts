@@ -1,4 +1,5 @@
 import { DataTypes, Sequelize, Model, Optional } from 'sequelize';
+import { User } from './user.js';
 
 interface TimeCapsuleAttributes {
     id: number;
@@ -7,6 +8,7 @@ interface TimeCapsuleAttributes {
     openDate: string;
     message: string;
     catUrl: string;
+    assignedUserId?: number;
 }
 
 interface TimeCapsuleCreationAttributes extends Optional<TimeCapsuleAttributes, 'id'> {}
@@ -18,6 +20,10 @@ export class TimeCapsule extends Model<TimeCapsuleAttributes, TimeCapsuleCreatio
     public openDate!: string;
     public message!: string;
     public catUrl!: string;
+    public assignedUserId!: number;
+
+    //Associated Volunteer model
+    public readonly assignedUser?: User;
 }
 
 export function TimeCapsuleFactory(sequelize: Sequelize): typeof TimeCapsule {
@@ -47,10 +53,14 @@ export function TimeCapsuleFactory(sequelize: Sequelize): typeof TimeCapsule {
       catUrl: {
         type: DataTypes.STRING,
         allowNull: false,
-      }
+      },
+      assignedUserId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
     },
     {
-      tableName: 'time-capsule',
+      tableName: 'timecapsule',
       sequelize,
     }
   );

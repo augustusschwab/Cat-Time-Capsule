@@ -28,14 +28,13 @@ const Login = () => {
   };
 
   return (
-    <div className='form-container'>
-      <form className='form login-form' onSubmit={handleSubmit}>
+    <div>
+      <form className='form' onSubmit={handleSubmit}>
         <h1>Login</h1>
         {/* Username input field */}
-        <div className="form-group">
+        <div className="control">
           <label>Username</label>
           <input 
-            className="form-input"
             type='text'
             name='username'
             value={loginData.username || ''}
@@ -43,10 +42,9 @@ const Login = () => {
           />
         </div>
         {/* Password input field */}
-        <div className="form-group">
+        <div>
           <label>Password</label>
           <input 
-            className="form-input"
             type='password'
             name='password'
             value={loginData.password || ''}
@@ -54,8 +52,8 @@ const Login = () => {
           />
         </div>
         {/* Submit button for the login form */}
-        <div className="form-group">
-          <button className="btn btn-primary" type='submit'>Login</button>
+        <div>
+          <button type='submit'>Login</button>
         </div>
       </form>
     </div>
