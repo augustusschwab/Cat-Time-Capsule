@@ -1,53 +1,75 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { TimeCapsule } from '../interfaces/TimeCapsule.jsx';
+import { TimeCapsuleData } from '../interfaces/TimeCapsuleData.js';
+import { fetchCat, createTimeCapsule } from '../api/time-capsule.js'
 
 
 function TimeCapsuleForm() {
-    const [timeCapsule, setTimeCapsule] = useState<TimeCapsule | undefined>({
+    const [newTimeCapsule, setTimeCapsule] = useState<TimeCapsuleData>({
         name: '',
         email: '',
         openDate: '',
         message: '',
+        catUrl: '',
+        assignedUserId: null,
+        assignedUser: null,
     });
 
     const navigate = useNavigate();
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value } = event.target;
-        setTimeCapsule((prev)=> prev ? { ...prev, [name]: value } : undefined);
+    const createNewTimeCapsule = async (body: TimeCapsuleData) => {
+        try {
+            console.log(body);
+            const data = await createTimeCapsule(body);
+            return data;
+        } catch(err) {
+            console.log('Failed to create Time Capsule', err);
+        }
     }
 
-    const handleSubmit = (event: any) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value } = event.target;
+        setTimeCapsule((prev)=> ({ ...prev, [name]: value }));
+    }
+
+    const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
-        console.log('Form submitted:', {timeCapsule})
-        navigate('/home');
-        //Send data to API
+        //Fetch cat url
+        const catUrl = await fetchCat();
+        console.log('This is the catURL:', catUrl);
+        
+        //Update the Time Capsule object with the image of a random cat.
+        const updatedTimeCapsule = {...newTimeCapsule, catUrl};
+        console.log('Form submitted:', updatedTimeCapsule)
+
+        //Create a new time capsule object with the information provided by the user and the random cat image url.
+        await createNewTimeCapsule(updatedTimeCapsule);
+        navigate('/home'); //navigate to the user home page
     };
 
     return(
-        <form onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit}>
             <label>
                 Name:
-                <input type='text' name='name' value={timeCapsule?.name || ''} onChange={handleChange}></input>
+                <input type='text' name='name' value={newTimeCapsule?.name || ''} onChange={handleChange}></input>
             </label>
             <br/>
             <label>
                 Email:
-                <input type='text' name='email' value={timeCapsule?.email || ''} onChange={handleChange}></input>
+                <input type='text' name='email' value={newTimeCapsule?.email || ''} onChange={handleChange}></input>
             </label>
             <br/>
             <label>
                 Open Date:
-                <input type='text' name='openDate' value={timeCapsule?.openDate || ''} onChange={handleChange}></input>
+                <input type='text' name='openDate' value={newTimeCapsule?.openDate || ''} onChange={handleChange}></input>
             </label>
             <br />
             <label>
                 Message:
-                <input type='text' name='message' value={timeCapsule?.message || ''} onChange={handleChange}></input>
+                <input type='text' name='message' value={newTimeCapsule?.message || ''} onChange={handleChange}></input>
             </label>
             <br />
-            <button type="submit" onSubmit={handleSubmit}>Submit</button>
+            <button className="btn" type="submit">Submit</button>
         </form>
     );
 }

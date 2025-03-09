@@ -66,3 +66,4 @@ export function UserFactory(sequelize: Sequelize): typeof User {
 }
 
 
+
