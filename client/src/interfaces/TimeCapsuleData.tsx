@@ -1,6 +1,7 @@
 import { UserData } from "./UserData";
 
 export interface TimeCapsuleData {
+    id: number | null,
     name: string,
     email: string,
     openDate: string,

@@ -13,6 +13,7 @@ body {
 
 h1 {
   font-size: 23px;
+  text-align: center;
 }
 
 .form {
@@ -150,4 +151,59 @@ h1 {
 }
 .credits a:hover {
   opacity: 1;
+}
+
+
+/* Time Capsule Card List Display CSS */
+.list-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.list{
+  background: black;
+  border-radius: 20px;
+  width: 800px;
+}
+
+.list-header {
+  display: flex;
+  text-align: center;
+  border-bottom: 2px solid white;
+}
+
+.list-header div{
+  margin: 4px 0;
+  /* border-left: 2px solid white; */
+  /* border-right: 2px solid white; */
+  width: 100%;
+}
+
+.time-capsule-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 600px;
+  text-align: center;
+  margin: auto;
+  padding-bottom: 32px;
+}
+
+.time-capsule-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px 0;
+  padding: 16px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.time-capsule-card:hover {
+  border: 0.25px solid white;
+}
+
+.card-item {
+  text-align: center;
 }
