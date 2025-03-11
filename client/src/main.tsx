@@ -8,7 +8,7 @@ import ErrorPage from './pages/ErrorPage.tsx'
 import Home from './pages/Home.tsx'
 import Login from './pages/Login.tsx'
 import TimeCapsule from './pages/TimeCapsule.tsx'
-
+import CreateUser from './pages/CreateUser.tsx'
 
 const router = createBrowserRouter([
   {
@@ -27,8 +27,12 @@ const router = createBrowserRouter([
       {
         path: '/time-capsule',
         element: <TimeCapsule />
-      }
+      },
+
+      {path: '/create-user',
+       element: <CreateUser />}
     ]
+
   }
 ]);
 
