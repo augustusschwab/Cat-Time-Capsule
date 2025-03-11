@@ -1,61 +1,70 @@
-import { useState, useEffect, useLayoutEffect } from "react";
-import { retrieveUsers } from "../api/user";
-import type { UserData } from "../interfaces/UserData";
-import ErrorPage from "./ErrorPage";
-import UserList from '../components/UserForm';
-import auth from '../utils/auth';
-import '../index.css'
+// import { useState, useEffect, useLayoutEffect } from 'react';
+// import TimeCapsuleForm from '../components/TimeCapsuleForm';
+import TimeCapsuleList from '../components/TimeCapsuleList';
+// import { retrieveUsers } from '../api/user';
+// import ErrorPage from './ErrorPage';
+// import auth from '../utils/auth';
 
-const Home = () => {
+function Home() {
+    // const [timeCapsuleList, setCapsule] = useState([]);
+    // const [error, setError] = useState(false);
+    // const [loginCheck, setLoginCheck] = useState(false);
+    // const [editingCapsule, setEditingCapsule] = useState(null);
 
-    const [users, setUsers] = useState<UserData[]>([]);
-    const [error, setError] = useState(false);
-    const [loginCheck, setLoginCheck] = useState(false);
+    // useEffect(() => {
+    //     if (loginCheck) {
+    //         fetchTimeCapsules();
+    //     }
+    // }, [loginCheck]);
 
-    useEffect(() => {
-        if (loginCheck) {
-            fetchUsers();
-        }
-    }, [loginCheck]);
+    // useLayoutEffect(() => {
+    //     checkLogin();
+    // }, []);
 
-    useLayoutEffect(() => {
-        checkLogin();
-    }, []);
+    // const checkLogin = () => {
+    //     if (auth.loggedIn()) {
+    //         setLoginCheck(true);
+    //     }
+    // };
 
-    const checkLogin = () => {
-        if (auth.loggedIn()) {
-            setLoginCheck(true);
-        }
-    };
+    // const fetchTimeCapsules = async () => {
+    //     try {
+    //         const data = await retrieveUsers();
+    //         setCapsule(data)
+    //     } catch (err) {
+    //         console.error('Failed to retrieve time capsules:', err);
+    //         setError(true);
+    //     }
+    // }
 
-    const fetchUsers = async () => {
-        try {
-            const data = await retrieveUsers();
-            setUsers(data)
-        } catch (err) {
-            console.error('Failed to retrieve tickets:', err);
-            setError(true);
-        }
-    }
+    // const removeTimeCapsule = (name: string) => {
+    //     const updatedTimeCapsule = timeCapsuleList.filter((item) => item.name !== name);
+    //     setCapsule(updatedTimeCapsule);
+    // };
 
-    if (error) {
-        return <ErrorPage />;
-    }
+    // const editTimeCapsule = (itemName: string, newValue: string) => {
+    //     if (!newValue.text) {
+    //         return;
+    //     }
+
+    //     setCapsule((prev) =>
+    //         prev.map((item) => (item.name === itemName ? newValue : item))
+    //     );
+    //     setEditingCapsule(null);
+    // };
+    // const handleEditClick = (capsule) => {
+    //     setEditingCapsule(capsule);
+    // }
+    // if (error) {
+    //     return <ErrorPage />;
+    // }
 
     return (
-        <div className="home-container">
-            {
-                !loginCheck ? (
-                    <div className='login-notice'>
-                        <h1>
-                            Login to view all your friends!
-                        </h1>
-                    </div>
-                ) : (
-                    <UserList users={users} />
-                )}
+        <div>
+            <h1>Here are your time capsules:</h1>
+            <TimeCapsuleList/>
         </div>
     );
-};
+}
 
-  export default Home;
+export default Home;

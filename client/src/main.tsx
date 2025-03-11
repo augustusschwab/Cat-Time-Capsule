@@ -9,6 +9,13 @@ import Home from './pages/Home.tsx'
 import Login from './pages/Login.tsx'
 import TimeCapsule from './pages/TimeCapsule.tsx'
 
+import CreateUser from './pages/CreateUser.tsx'
+
+import TimeCapsuleList from './components/TimeCapsuleList.tsx'
+import EditTimeCapsule from './pages/EditTimeCapsule.tsx'
+import DisplayTimeCapsule from './pages/TimeCapsuleDisplay.tsx'
+
+
 
 const router = createBrowserRouter([
   {
@@ -27,8 +34,27 @@ const router = createBrowserRouter([
       {
         path: '/time-capsule',
         element: <TimeCapsule />
+      },
+
+
+      {path: '/create-user',
+       element: <CreateUser />}
+
+      {
+        path: '/time-capsule-list',
+        element:<TimeCapsuleList />
+      },
+      {
+        path: '/time-capsule-edit',
+        element:<EditTimeCapsule />
+      },
+      {
+        path: '/time-capsule/:id',
+        element:<DisplayTimeCapsule />
       }
+
     ]
+
   }
 ]);
 
