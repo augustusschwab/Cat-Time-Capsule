@@ -101,8 +101,6 @@ const Login = () => {
           </div>
         </div>
           <Link to='/create-user'>Create User</Link>
-      </form>
-    </div>
       </div>
     </section>
   )

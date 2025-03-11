@@ -35,10 +35,9 @@ const router = createBrowserRouter([
         path: '/time-capsule',
         element: <TimeCapsule />
       },
-
-
+      
       {path: '/create-user',
-       element: <CreateUser />}
+       element: <CreateUser />},
 
       {
         path: '/time-capsule-list',
