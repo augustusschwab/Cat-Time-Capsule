@@ -29,35 +29,71 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <form className='form-container' onSubmit={handleSubmit}>
-        <h1>Login</h1>
-        {/* Username input field */}
-        <div className="control">
-          <label>Username</label>
-          <input 
-            type='text'
-            name='username'
-            value={loginData.username || ''}
-            onChange={handleChange}
-          />
+
+    <section className="section">
+      <div className="container">
+        <div className="columns is-centered">
+          <div className="column is-4">
+            <h1 className="title has-text-centered">Login</h1>
+
+            <form action="/login" method="POST" onSubmit={handleSubmit}>
+              {/* Username Field */}
+              <div className="field">
+                <label className="label">Username</label>
+                <div className="control has-icons-left">
+                  <input 
+                    className="input"
+                    type='text'
+                    name='username'
+                    value={loginData.username || ''}
+                    onChange={handleChange}
+                    placeholder="Enter your username" 
+                    required
+                  />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-envelope"></i>
+                  </span>
+                </div>
+              </div>
+
+              {/* Password Field */}
+              <div className="field">
+                <label className="label">Password</label>
+                <div className="control has-icons-left">
+                  <input 
+                    className="input" 
+                    type='password'
+                    name='password'
+                    value={loginData.password || ''}
+                    onChange={handleChange}
+                    placeholder="Enter your password" 
+                    required
+                  />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-lock"></i>
+                  </span>
+                </div>
+              </div>
+
+              {/* Submit Button */}
+              <div className="field">
+                <div className="control">
+                  <button className="button is-primary is-fullwidth" onSubmit={handleSubmit}>
+                    Login
+                  </button>
+                </div>
+              </div>
+
+              {/* Forgot Password Link */}
+              <p className="has-text-centered">
+                <a href="/forgot-password" className="is-size-7">Forgot your password?</a>
+              </p>
+            </form>
+
+          </div>
         </div>
-        {/* Password input field */}
-        <div className ="form-group">
-          <label>Password</label>
-          <input 
-            type='password'
-            name='password'
-            value={loginData.password || ''}
-            onChange={handleChange}
-          />
-        </div>
-        {/* Submit button for the login form */}
-        <div>
-          <button type='submit'>Login</button>
-        </div>
-      </form>
-    </div>
+      </div>
+    </section>
   )
 };
 
