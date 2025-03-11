@@ -20,7 +20,6 @@ const EditTimeCapsule = () => {
     }
 
     useEffect(() => {
-        console.log(state);
         fetchTimeCapsule(state);
     }, []);
 

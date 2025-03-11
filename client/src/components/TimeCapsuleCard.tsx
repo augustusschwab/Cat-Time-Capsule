@@ -1,15 +1,16 @@
-import { EmailData } from '../interfaces/EmailData.js'
+import { EmailData } from '../interfaces/EmailData.js';
 import { MouseEventHandler } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 
 export default function TimeCapsuleCard(props: any){
     const timeCapsule = props.timeCapsule;
+    const timeCapsuleUrl = `http://localhost:3000/time-capsule/${props.timeCapsule.id}`;
     
     const email: EmailData = {
         to: timeCapsule.email,
-        subject: 'You Have Recieved A Time Capsule Notification',
-        text: 'Click the link to open the time capsule.',
-        html: 'Click the link to open the time capsule.'
+        subject: 'You Have Recieved A Time Capsule from a Friend.',
+        text: `Click the link to open the time capsule. ${timeCapsuleUrl}`,
+        html: `Click the link to open the time capsule. ${timeCapsuleUrl}`
     }
 
     const navigate = useNavigate();
@@ -43,12 +44,13 @@ export default function TimeCapsuleCard(props: any){
     return (
         <>
         <Link to='/time-capsule-edit' state={timeCapsule.id}>
-            <div className='time-capsule-card' onClick={handleClick}>
+            <div className='time-capsule-card'>
                 <div className='card-item'>{timeCapsule.name}</div>
                 <div className='card-item'>{timeCapsule.email}</div>
                 <div className='card-item'>{timeCapsule.openDate}</div>
                 <button onClick={handleNotification}>Send Notification</button>
                 <button onClick={handleDelete}>Delete</button>
+                <button onClick={handleClick}>Edit</button>
             </div>
         </Link>
         </>
