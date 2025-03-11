@@ -28,7 +28,7 @@ function TimeCapsuleForm() {
         }
     }
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target;
         setTimeCapsule((prev)=> ({ ...prev, [name]: value }));
     }
@@ -50,6 +50,7 @@ function TimeCapsuleForm() {
 
     return(
         <form className="capsule-form" onSubmit={handleSubmit}>
+            <h1 className="has-text-dark">Create A Time Capusle</h1>
             <label>
                 Name:
                 <input className="input-box" type='text' name='name' value={newTimeCapsule?.name || ''} onChange={handleChange}></input>
@@ -67,10 +68,10 @@ function TimeCapsuleForm() {
             <br />
             <label>
                 Message:
-                <textarea className="message-box" type='text' name='message' value={newTimeCapsule?.message || ''} onChange={handleChange}></textarea>
+                <textarea className="message-box" name='message' value={newTimeCapsule?.message || ''} onChange={handleChange}></textarea>
             </label>
             <br />
-            <button className="btn" type="submit">Submit</button>
+            <button className="button is-black" type="submit">Submit</button>
         </form>
     );
 }

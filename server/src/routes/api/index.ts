@@ -6,7 +6,6 @@ import { userRouter } from './user-routes.js';
 
 const router = Router();
 
-router.use('/users', userRouter);
 router.use('/email', emailRouter);
 router.use('/cat', catRouter);
 router.use('/time-capsule', timeCapsuleRouter);

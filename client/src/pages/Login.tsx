@@ -2,17 +2,18 @@ import { useState, FormEvent, ChangeEvent } from "react";
 import Auth from "../utils/auth";
 import { login } from "../api/auth";  
 import { UserLogin } from "../interfaces/UserLogin";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import '../index.css';
 
 
 const Login = () => {
+  //const [loginCheck, setLoginCheck] = useState(false);
   const [loginData, setLoginData] = useState<UserLogin>({
     username: '',
     password: ''
   });
 
-  const navigate = useNavigate();
+  const [error, setError] = useState<string>('');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -28,9 +29,10 @@ const Login = () => {
       const data = await login(loginData);
       Auth.login(data.token);
       console.log('Login successful');
-      navigate('/time-capsule');
+      //setLoginCheck(true);
     } catch (err) {
-      console.error('Failed to login', err); 
+      console.error('Failed to login', err);
+      setError('Incorrect username or password'); 
     }
   };
 
@@ -40,6 +42,17 @@ const Login = () => {
         <div className="columns is-centered">
           <div className="column is-4">
             <h1 className="title has-text-centered">Login</h1>
+
+            {/* Error Notification */}
+            {error && (
+              <div className="notification is-danger is-light">
+                <button 
+                  className="delete" 
+                  onClick={() => setError('')}
+                ></button>
+                {error}
+              </div>
+            )}
 
             <form action="/login" method="POST" onSubmit={handleSubmit}>
               {/* Username Field */}
@@ -91,13 +104,19 @@ const Login = () => {
 
               {/* Forgot Password Link */}
               <p className="has-text-centered">
-                <a href="/forgot-password" className="is-size-7">Forgot your password?</a>
+                <a href="/forgot-password" className="is-size-7 has-text-light">Forgot your password?</a>
               </p>
-            </form>
+              <br/>
+              <p className="has-text-centered">-OR-</p>
+              <br/>
 
+              {/* Create User Link */}
+              <Link to='/create-user'>
+                <button className="button is-light is-fullwidth is-size-8 has-text-dark">Create New User</button>
+              </Link>
+            </form>
           </div>
         </div>
-          <Link to='/create-user'>Create User</Link>
       </div>
     </section>
   )

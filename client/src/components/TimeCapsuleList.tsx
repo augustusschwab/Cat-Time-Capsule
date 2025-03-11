@@ -41,15 +41,23 @@ function TimeCapsuleList() {
     }, []);
 
     return(
-        <div className='list-container'>
-            <div className='list'>
-                <div className='list-header'>
-                    <div>Name</div>
-                    <div>Email</div>
-                    <div>Open Date</div>
-                </div>
-                <div className='time-capsule-list'>
-                    {timeCapsules ? timeCapsules.map((timeCapsule) => (
+        <section className="section">
+            <div className="container">
+                <h1 className="title has-text-centered">Your Time Capsules</h1>
+
+                <div className="table-container">
+                <table className="table is-fullwidth is-striped is-hoverable">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Open Date</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {timeCapsules ? (
+                        timeCapsules.map((timeCapsule) => (
                         <TimeCapsuleCard
                             key={timeCapsule.id}
                             id={timeCapsule.id}
@@ -57,17 +65,22 @@ function TimeCapsuleList() {
                             sendNotification={sendNotification}
                             deleteTimeCapsule={deleteCapsule}
                         />
-                        )
+                        ))
                     ) : (
-                        <div> Could not retrieve time capsules! </div>
-
-                    )
-                    }
+                        <tr>
+                        <td colSpan={4} className="has-text-centered">
+                            Could not retrieve time capsules!
+                        </td>
+                        </tr>
+                    )}
+                    </tbody>
+                </table>
                 </div>
             </div>
-        </div>
+        </section>
     )
-
 }
 
 export default TimeCapsuleList;
+
+
