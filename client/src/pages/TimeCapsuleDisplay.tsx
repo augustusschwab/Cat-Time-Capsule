@@ -22,13 +22,30 @@ const DisplayTimeCapsule = () => {
     }, []);
 
     return(
-        <div className='time-capsule'>
-            <h1>Hi {timeCapsule?.name} this is your time capsule!!</h1>
-            <div className='time-capsule-list'>
-                <p>This is what your friend wanted to tell you:</p>
-                <p>{timeCapsule?.message}</p>
-                <p>Here is a link to a cat photo too!</p>
-                <button onClick={() => window.open(timeCapsule?.catUrl, '_blank')}>See Your Cat</button>
+        <div className="section">
+            <div className="container">
+                <div className="columns is-centered">
+                <div className="column is-half">
+                    <div className="card">
+                    <div className="card-content">
+                        <h1 className="title">Hi {timeCapsule?.name}, this is your time capsule!! 🎉</h1>
+
+                        <div className="content">
+                        <p><strong>This is what your friend wanted to tell you:</strong></p>
+                        <p className="message is-size-5 has-text-weight-light">{timeCapsule?.message}</p>
+
+                        <p className="mt-4"><strong>Here is a link to a cat photo too! 🐱</strong></p>
+                        <button 
+                            className="button is-primary is-fullwidth mt-3"
+                            onClick={() => window.open(timeCapsule?.catUrl, '_blank')}
+                        >
+                            See Your Cat
+                        </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
             </div>
         </div>
     )
