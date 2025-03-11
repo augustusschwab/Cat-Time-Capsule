@@ -4,6 +4,7 @@ import type { UserData } from "../interfaces/UserData";
 import ErrorPage from "./ErrorPage";
 import UserList from '../components/UserForm';
 import auth from '../utils/auth';
+import '../index.css'
 
 const Home = () => {
 
@@ -42,7 +43,7 @@ const Home = () => {
     }
 
     return (
-        <>
+        <div className="home-container">
             {
                 !loginCheck ? (
                     <div className='login-notice'>
@@ -53,7 +54,7 @@ const Home = () => {
                 ) : (
                     <UserList users={users} />
                 )}
-        </>
+        </div>
     );
 };
 
