@@ -12,7 +12,7 @@ body {
 /* headings */ 
 
 h1 {
-  font-size: 23px;
+  font-size: 50px;
 }
 
 /* forms */
@@ -82,7 +82,7 @@ h1 {
 .navbar a {
   color: white;
   text-decoration: none;
-  padding: 10px;
+  padding: 5px;
 }
 
 .navbar a:hover {
