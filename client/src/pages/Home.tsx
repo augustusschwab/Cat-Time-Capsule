@@ -1,19 +1,19 @@
-import { useState, useEffect, useLayoutEffect } from "react";
-import { retrieveUsers } from "../api/user";
-import type { UserData } from "../interfaces/UserData";
-import ErrorPage from "./ErrorPage";
-import UserList from '../components/UserForm';
+import { useState, useEffect, useLayoutEffect } from 'react';
+import TimeCapsuleForm from '../components/TimeCapsuleForm';
+import TimeCapsuleList from '../components/TimeCapsuleList';
+import { retrieveUsers } from '../api/user';
+import ErrorPage from './ErrorPage';
 import auth from '../utils/auth';
 
-const Home = () => {
-
-    const [users, setUsers] = useState<UserData[]>([]);
+function Home() {
+    const [timeCapsuleList, setCapsule] = useState([]);
     const [error, setError] = useState(false);
     const [loginCheck, setLoginCheck] = useState(false);
+    const [editingCapsule, setEditingCapsule] = useState(null);
 
     useEffect(() => {
         if (loginCheck) {
-            fetchUsers();
+            fetchTimeCapsules();
         }
     }, [loginCheck]);
 
@@ -27,34 +27,55 @@ const Home = () => {
         }
     };
 
-    const fetchUsers = async () => {
+    const fetchTimeCapsules = async () => {
         try {
             const data = await retrieveUsers();
-            setUsers(data)
+            setCapsule(data)
         } catch (err) {
-            console.error('Failed to retrieve tickets:', err);
+            console.error('Failed to retrieve time capsules:', err);
             setError(true);
         }
     }
 
+    const removeTimeCapsule = (name: string) => {
+        const updatedTimeCapsule = timeCapsuleList.filter((item) => item.name !== name);
+        setCapsule(updatedTimeCapsule);
+    };
+
+    const editTimeCapsule = (itemName: string, newValue: string) => {
+        if (!newValue.text) {
+            return;
+        }
+
+        setCapsule((prev) =>
+            prev.map((item) => (item.name === itemName ? newValue : item))
+        );
+        setEditingCapsule(null);
+    };
+    const handleEditClick = (capsule) => {
+        setEditingCapsule(capsule);
+    }
     if (error) {
         return <ErrorPage />;
     }
 
     return (
-        <>
-            {
-                !loginCheck ? (
-                    <div className='login-notice'>
-                        <h1>
-                            Login to view all your friends!
-                        </h1>
-                    </div>
-                ) : (
-                    <UserList users={users} />
-                )}
-        </>
+        <div>
+            <h1>Here are your time capsules:</h1>
+            {editingCapsule ? (
+                <TimeCapsuleForm initialData={editingCapsule}
+                onSubmit={(newValue) => editTimeCapsule(editingCapsule.name, newValue)}
+                />
+            ) : (
+                <TimeCapsuleForm onSubmit={addTimeCapsule} />
+            )}
+            <TimeCapsuleList
+                timeCapsuleList={timeCapsuleList}
+                removeTimeCapsule={removeTimeCapsule}
+                editTimeCapsule={editTimeCapsule}
+            />
+        </div>
     );
-};
+}
 
-  export default Home;
+export default Home;
