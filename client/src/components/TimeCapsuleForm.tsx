@@ -6,6 +6,7 @@ import { fetchCat, createTimeCapsule } from '../api/time-capsule.js'
 
 function TimeCapsuleForm() {
     const [newTimeCapsule, setTimeCapsule] = useState<TimeCapsuleData>({
+        id: null,
         name: '',
         email: '',
         openDate: '',
