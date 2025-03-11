@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 //import { Link } from 'react-router-dom';
 import auth from '../utils/auth';
+import '../index.css'
 
 const Navbar = () => {
   const [loginCheck, setLoginCheck] = useState(false);
@@ -34,13 +35,15 @@ const Navbar = () => {
     //     }
     //   </div>
     // </div>
-          <nav>
+          <nav className="navbar">
+          <div className="nav-links">
             <ul>
               <li><a href="/">Home</a></li>
               <li><a href="/about">About</a></li>
               <li><a href="/time-capsule">Create Time Capsule</a></li>
               <li><a href="/time-capsule-list">View Time Capsules</a></li>
             </ul>
+          </div>
           </nav>
   );
 }

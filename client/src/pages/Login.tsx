@@ -2,9 +2,7 @@ import { useState, FormEvent, ChangeEvent } from "react";
 import Auth from "../utils/auth";
 import { login } from "../api/auth";  
 import { UserLogin } from "../interfaces/UserLogin";
-
 import { Link, useNavigate } from "react-router-dom";
-
 import '../index.css';
 
 
@@ -37,7 +35,6 @@ const Login = () => {
   };
 
   return (
-
     <section className="section">
       <div className="container">
         <div className="columns is-centered">
