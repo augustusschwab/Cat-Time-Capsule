@@ -2,7 +2,7 @@ import { ChangeEvent, useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TimeCapsuleData } from '../interfaces/TimeCapsuleData.js';
 import { fetchCat, createTimeCapsule } from '../api/time-capsule.js'
-
+import '../index.css'
 
 function TimeCapsuleForm() {
     const [newTimeCapsule, setTimeCapsule] = useState<TimeCapsuleData>({
@@ -49,25 +49,25 @@ function TimeCapsuleForm() {
     };
 
     return(
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="capsule-form" onSubmit={handleSubmit}>
             <label>
                 Name:
-                <input type='text' name='name' value={newTimeCapsule?.name || ''} onChange={handleChange}></input>
+                <input className="input-box" type='text' name='name' value={newTimeCapsule?.name || ''} onChange={handleChange}></input>
             </label>
             <br/>
             <label>
                 Email:
-                <input type='text' name='email' value={newTimeCapsule?.email || ''} onChange={handleChange}></input>
+                <input className="input-box" type='text' name='email' value={newTimeCapsule?.email || ''} onChange={handleChange}></input>
             </label>
             <br/>
             <label>
                 Open Date:
-                <input type='text' name='openDate' value={newTimeCapsule?.openDate || ''} onChange={handleChange}></input>
+                <input className="input-box" type='text' name='openDate' value={newTimeCapsule?.openDate || ''} onChange={handleChange}></input>
             </label>
             <br />
             <label>
                 Message:
-                <input type='text' name='message' value={newTimeCapsule?.message || ''} onChange={handleChange}></input>
+                <textarea className="message-box" type='text' name='message' value={newTimeCapsule?.message || ''} onChange={handleChange}></textarea>
             </label>
             <br />
             <button className="btn" type="submit">Submit</button>
