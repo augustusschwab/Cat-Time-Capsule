@@ -19,7 +19,7 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
     return (
         <>
             <h2>
-                Check out all your friends!
+                Check out all of your time capsules!
             </h2>
             {users && users.map((user) => (
                 <div key={user.id}>
