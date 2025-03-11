@@ -2,13 +2,19 @@ import { useState, FormEvent, ChangeEvent } from "react";
 import Auth from "../utils/auth";
 import { login } from "../api/auth";  
 import { UserLogin } from "../interfaces/UserLogin";
+
+import { Link, useNavigate } from "react-router-dom";
+
 import '../index.css';
+
 
 const Login = () => {
   const [loginData, setLoginData] = useState<UserLogin>({
     username: '',
     password: ''
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -23,6 +29,8 @@ const Login = () => {
     try {
       const data = await login(loginData);
       Auth.login(data.token);
+      console.log('Login successful');
+      navigate('/time-capsule');
     } catch (err) {
       console.error('Failed to login', err); 
     }
@@ -92,6 +100,9 @@ const Login = () => {
 
           </div>
         </div>
+          <Link to='/create-user'>Create User</Link>
+      </form>
+    </div>
       </div>
     </section>
   )

@@ -10,5 +10,6 @@ router.use('/users', userRouter);
 router.use('/email', emailRouter);
 router.use('/cat', catRouter);
 router.use('/time-capsule', timeCapsuleRouter);
+router.use('/users', userRouter);
 
 export default router;
