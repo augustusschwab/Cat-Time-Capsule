@@ -20,6 +20,7 @@ const EditTimeCapsule = () => {
     }
 
     useEffect(() => {
+        console.log(state);
         fetchTimeCapsule(state);
     }, []);
 
@@ -33,38 +34,38 @@ const EditTimeCapsule = () => {
         }
     }
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setTimeCapsule((prev) => (prev ? { ...prev, [name]: value } : undefined))
     };
 
     return (
-        <>
-        <h1>Edit Time Capsule</h1>
-        <form className="form" onSubmit={handleSubmit}>
-            <label>
-                Name:
-                <input type='text' name='name' value={timeCapsule?.name || ''} onChange={handleChange}></input>
-            </label>
-            <br/>
-            <label>
-                Email:
-                <input type='text' name='email' value={timeCapsule?.email || ''} onChange={handleChange}></input>
-            </label>
-            <br/>
-            <label>
-                Open Date:
-                <input type='text' name='openDate' value={timeCapsule?.openDate || ''} onChange={handleChange}></input>
-            </label>
-            <br />
-            <label>
-                Message:
-                <input type='text' name='message' value={timeCapsule?.message || ''} onChange={handleChange}></input>
-            </label>
-            <br />
-            <button className="btn" type="submit">Submit</button>
-        </form>
-        </>
+        <div className="form-container">
+            <form className="capsule-form" onSubmit={handleSubmit}>
+                <h1 className="has-text-dark">Edit Time Capsule</h1>
+                <label>
+                    Name:
+                    <input className="input-box" type='text' name='name' value={timeCapsule?.name || ''} onChange={handleChange}></input>
+                </label>
+                <br/>
+                <label>
+                    Email:
+                    <input className="input-box" type='text' name='email' value={timeCapsule?.email || ''} onChange={handleChange}></input>
+                </label>
+                <br/>
+                <label>
+                    Open Date:
+                    <input className="input-box" type='text' name='openDate' value={timeCapsule?.openDate || ''} onChange={handleChange}></input>
+                </label>
+                <br />
+                <label>
+                    Message:
+                    <textarea className="message-box" name='message' value={timeCapsule?.message || ''} onChange={handleChange}></textarea>
+                </label>
+                <br />
+                <button className="btn" type="submit">Submit</button>
+            </form>
+        </div>
     )
 };
 

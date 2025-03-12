@@ -117,7 +117,7 @@ label {
 .btn {
   width: fit-content;
   padding: 10px 16px;
-  background: #00d4ff;
+  /* background: #00d4ff; */
   color: #fff;
   font-weight: bold;
   font-size: 16px;
@@ -147,7 +147,7 @@ label {
 
 /* navbar */
 
-.navbar a {
+/* .navbar a {
   display: flex;
   align-items: center;
   color: white;
@@ -161,7 +161,7 @@ label {
 }
 .navbar a:hover {
   background-color: #00d4ff;
-}
+} */
 
 /* homepage */
 

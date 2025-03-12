@@ -17,6 +17,7 @@ router.get('/', async (_req: Request, res: Response) => {
 //GET /api/time-capsule/:id - Get Time Capsule by id.
 router.get('/:id', async(req: Request, res: Response) => {
     const { id } = req.params;
+    console.log(id);
     try {
         const timeCapsule = await TimeCapsule.findByPk(id);
         if (timeCapsule) {

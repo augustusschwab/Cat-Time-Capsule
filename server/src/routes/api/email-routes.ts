@@ -26,7 +26,7 @@ router.post('/send-email', async(req: Request, res: Response) => {
 
     try{
         await sgMail.send(msg); 
-        console.log(res);
+        //console.log(res);
         return res.status(200).json({message:`Email sent.`})
     } catch (err) {
         console.error(err);

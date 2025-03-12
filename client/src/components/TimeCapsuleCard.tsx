@@ -1,6 +1,7 @@
 import { EmailData } from '../interfaces/EmailData.js';
 import { MouseEventHandler } from "react";
-import { useNavigate, Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
+import { FaBell, FaTrash, FaEdit } from 'react-icons/fa';
 
 export default function TimeCapsuleCard(props: any){
     const timeCapsule = props.timeCapsule;
@@ -11,12 +12,6 @@ export default function TimeCapsuleCard(props: any){
         subject: 'You Have Recieved A Time Capsule from a Friend.',
         text: `Click the link to open the time capsule. ${timeCapsuleUrl}`,
         html: `Click the link to open the time capsule. ${timeCapsuleUrl}`
-    }
-
-    const navigate = useNavigate();
-
-    const handleClick = () => {
-        navigate('/time-capsule-edit');
     }
 
     const handleNotification: MouseEventHandler<HTMLButtonElement> = async() => {
@@ -42,17 +37,41 @@ export default function TimeCapsuleCard(props: any){
 
 
     return (
-        <>
-        <Link to='/time-capsule-edit' state={timeCapsule.id}>
-            <div className='time-capsule-card'>
-                <div className='card-item'>{timeCapsule.name}</div>
-                <div className='card-item'>{timeCapsule.email}</div>
-                <div className='card-item'>{timeCapsule.openDate}</div>
-                <button onClick={handleNotification}>Send Notification</button>
-                <button onClick={handleDelete}>Delete</button>
-                <button onClick={handleClick}>Edit</button>
-            </div>
-        </Link>
-        </>
+        <tr>
+            <td>{timeCapsule.name}</td>
+            <td>{timeCapsule.email}</td>
+            <td>{timeCapsule.openDate}</td>
+            <td className="buttons">
+            {/* Send Notification Button */}
+            <button onClick={handleNotification} className='button is-link is-small'>
+              <span className='icon'>
+                <FaBell />
+              </span>
+              {/* <span>Send Notification</span> */}
+            </button>
+    
+            {/* Delete Button */}
+            <button onClick={handleDelete} className='button is-danger is-small'>
+              <span className='icon'>
+                <FaTrash />
+              </span>
+              {/* <span>Delete</span> */}
+            </button>
+    
+            {/* Edit Button */}
+            <Link to='/time-capsule-edit' state={timeCapsule.id}>
+                <button  className='button is-info is-small'>
+                <span className='icon'>
+                    <FaEdit />
+                </span>
+                {/* <span>Edit</span> */}
+                </button>
+            </Link>
+            </td>
+      </tr>
     )
 };
+
+
+
+
