@@ -34,13 +34,14 @@ const DisplayTimeCapsule = () => {
                         <p><strong>This is what your friend wanted to tell you:</strong></p>
                         <p className="message is-size-5 has-text-weight-light">{timeCapsule?.message}</p>
 
-                        <p className="mt-4"><strong>Here is a link to a cat photo too! 🐱</strong></p>
-                        <button 
+                        <p className="mt-4"><strong>And they got you a too! 🐱</strong></p>
+                        <img src={timeCapsule?.catUrl}></img>
+                        {/* <button 
                             className="button is-primary is-fullwidth mt-3"
                             onClick={() => window.open(timeCapsule?.catUrl, '_blank')}
                         >
                             See Your Cat
-                        </button>
+                        </button> */}
                         </div>
                     </div>
                     </div>

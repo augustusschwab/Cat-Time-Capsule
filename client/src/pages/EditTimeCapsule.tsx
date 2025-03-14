@@ -28,7 +28,7 @@ const EditTimeCapsule = () => {
         e.preventDefault();
         if(timeCapsule && timeCapsule.id !== null){
             updateTimeCapsule(timeCapsule.id, timeCapsule);
-            navigate('/');
+            navigate('/time-capsule-list');
         } else {
             console.error('Time capsule is undefined.')
         }
@@ -63,7 +63,7 @@ const EditTimeCapsule = () => {
                     <textarea className="message-box" name='message' value={timeCapsule?.message || ''} onChange={handleChange}></textarea>
                 </label>
                 <br />
-                <button className="btn" type="submit">Submit</button>
+                <button className="button is-black" type="submit">Submit</button>
             </form>
         </div>
     )
